@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Risang Bagaskara Gumilar — Project Engineer & Planning Control</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0d1117;
+  --ink-soft: #1e2631;
+  --steel: #1b2d45;
+  --steel-mid: #243b55;
+  --gold: #c8973a;
+  --gold-light: #e6b86a;
+  --cream: #f5f0e8;
+  --cream-dark: #ede8df;
+  --white: #ffffff;
+  --text-muted: #8a9ab0;
+  --text-body: #3d4f63;
+  --accent-teal: #2a7f8a;
+  --accent-teal-light: #3da8b5;
+  --border: rgba(200,151,58,0.18);
+  --card-bg: rgba(255,255,255,0.96);
+  --shadow-sm: 0 2px 12px rgba(13,17,23,0.08);
+  --shadow-md: 0 8px 32px rgba(13,17,23,0.12);
+  --shadow-lg: 0 24px 64px rgba(13,17,23,0.18);
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--text-body);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 3rem;
+  background: rgba(245,240,232,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--steel);
+  letter-spacing: -0.02em;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-body);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  position: relative; overflow: hidden;
+  padding-top: 5rem;
+}
+.hero-left {
+  background: var(--steel);
+  padding: 6rem 4rem 4rem;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.hero-bg-grid {
+  position: absolute; inset: 0; opacity: 0.06;
+  background-image:
+    linear-gradient(var(--gold) 1px, transparent 1px),
+    linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-eyebrow::before {
+  content: ''; display: block;
+  width: 32px; height: 1px; background: var(--gold);
+}
+h1.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 700; line-height: 1.08;
+  color: var(--white); margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-style: italic; font-weight: 300;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--gold-light); margin-bottom: 2rem;
+}
+.hero-summary {
+  font-size: 0.92rem; color: #a8bdd0; line-height: 1.75;
+  max-width: 420px; margin-bottom: 2.5rem;
+}
+.hero-badges {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem;
+}
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(200,151,58,0.35);
+  color: var(--gold-light);
+  border-radius: 2px;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: var(--gold); color: var(--steel);
+  font-family: var(--font-body); font-weight: 600;
+  font-size: 0.82rem; letter-spacing: 0.05em;
+  padding: 0.9rem 1.8rem; text-decoration: none;
+  border-radius: 2px; transition: all 0.25s;
+  width: fit-content;
+}
+.hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,151,58,0.3); }
+.hero-cta svg { transition: transform 0.25s; }
+.hero-cta:hover svg { transform: translateX(4px); }
+
+/* Hero right — visual dashboard */
+.hero-right {
+  background: var(--cream-dark);
+  padding: 6rem 3rem 3rem;
+  display: flex; flex-direction: column;
+  justify-content: center; gap: 1.5rem;
+  position: relative; overflow: hidden;
+}
+.hero-right::before {
+  content: '';
+  position: absolute; top: -40px; right: -40px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(200,151,58,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  position: relative; overflow: hidden;
+}
+.stat-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  height: 3px; width: 40%;
+  background: var(--gold);
+}
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 2.4rem; font-weight: 700;
+  color: var(--steel); line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+
+/* Mini S-Curve visual */
+.scurve-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.scurve-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+.scurve-svg { width: 100%; height: 80px; }
+
+/* Mini Gantt */
+.gantt-card {
+  background: var(--steel);
+  border-radius: 6px; padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+.gantt-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.gantt-rows { display: flex; flex-direction: column; gap: 0.5rem; }
+.gantt-row { display: flex; align-items: center; gap: 0.75rem; }
+.gantt-row-label { font-size: 0.62rem; color: #8a9ab0; width: 48px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gantt-track { flex: 1; height: 8px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; position: relative; }
+.gantt-bar {
+  height: 100%; border-radius: 2px;
+  position: absolute; top: 0;
+  animation: slideIn 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+@keyframes slideIn { from { width: 0 !important; } }
+
+/* KPI Row */
+.kpi-row {
+  display: flex; gap: 1rem;
+}
+.kpi-item {
+  flex: 1; background: var(--card-bg);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 1rem; box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+.kpi-icon { font-size: 1.4rem; margin-bottom: 0.25rem; }
+.kpi-val {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.3rem; color: var(--steel);
+}
+.kpi-name {
+  font-family: var(--font-mono);
+  font-size: 0.55rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+
+/* SECTION STYLES */
+section { padding: 6rem 0; }
+.container { max-width: 1140px; margin: 0 auto; padding: 0 2.5rem; }
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.5rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-eyebrow::after { content: ''; flex: none; width: 32px; height: 1px; background: var(--gold); }
+h2.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-weight: 700; color: var(--steel);
+  letter-spacing: -0.02em; line-height: 1.2;
+  margin-bottom: 3rem;
+}
+
+/* COMPETENCIES */
+#competencies { background: var(--steel); }
+#competencies .section-eyebrow { color: var(--gold); }
+#competencies h2.section-title { color: var(--white); }
+.competencies-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.competency-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200,151,58,0.2);
+  border-radius: 6px; padding: 2rem;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.competency-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(200,151,58,0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+}
+.competency-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 0;
+  background: var(--gold);
+  transition: height 0.3s;
+}
+.competency-card:hover::before { height: 100%; }
+.comp-icon { font-size: 2rem; margin-bottom: 1rem; }
+.comp-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.1rem; color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.comp-desc { font-size: 0.82rem; color: #8a9ab0; line-height: 1.6; }
+
+/* TOOLS */
+.tools-section { background: var(--cream-dark); }
+.tools-grid {
+  display: flex; flex-wrap: wrap; gap: 0.75rem;
+}
+.tool-pill {
+  font-family: var(--font-mono); font-size: 0.72rem;
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--white);
+  color: var(--steel); font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-sm);
+}
+.tool-pill:hover {
+  background: var(--steel); color: var(--gold);
+  border-color: var(--steel);
+  transform: translateY(-2px);
+}
+.tool-pill.highlight {
+  background: var(--steel); color: var(--gold);
+  border-color: var(--steel);
+}
+
+/* EXPERIENCE */
+#experience { background: var(--cream); }
+.experience-timeline { position: relative; }
+.experience-timeline::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1px; background: var(--border);
+}
+.exp-item {
+  padding-left: 2.5rem; margin-bottom: 3rem;
+  position: relative;
+}
+.exp-item::before {
+  content: ''; position: absolute;
+  left: -4px; top: 8px;
+  width: 9px; height: 9px;
+  border-radius: 50%; background: var(--gold);
+  border: 2px solid var(--cream);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.5rem; }
+.exp-role {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.05rem; color: var(--steel);
+}
+.exp-date {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 0.1em; color: var(--text-muted);
+  background: var(--cream-dark); padding: 0.25rem 0.6rem;
+  border-radius: 2px; border: 1px solid var(--border);
+  white-space: nowrap;
+}
+.exp-company {
+  font-size: 0.82rem; color: var(--gold);
+  font-weight: 600; margin-bottom: 0.15rem;
+}
+.exp-location { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+.exp-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+.exp-bullets li {
+  font-size: 0.85rem; color: var(--text-body);
+  line-height: 1.65;
+  padding-left: 1.25rem; position: relative;
+}
+.exp-bullets li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--gold); font-size: 0.75rem;
+  top: 2px;
+}
+
+/* PROJECTS */
+#projects { background: var(--steel); }
+#projects .section-eyebrow { color: var(--gold); }
+#projects h2.section-title { color: var(--white); }
+.projects-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.project-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(200,151,58,0.15);
+  border-radius: 8px; padding: 2rem;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.project-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(200,151,58,0.4);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.35);
+  transform: translateY(-4px);
+}
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.project-tag::before {
+  content: ''; display: block;
+  width: 20px; height: 1px; background: var(--gold);
+}
+.project-name {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.15rem; color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.project-client {
+  font-size: 0.75rem; color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+.project-scope {
+  font-size: 0.82rem; color: #8a9ab0;
+  line-height: 1.6; margin-bottom: 1.5rem;
+}
+.project-meta {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+}
+.meta-tag {
+  font-family: var(--font-mono); font-size: 0.58rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(200,151,58,0.25);
+  color: var(--gold-light); border-radius: 2px;
+}
+
+/* CERTS */
+#certifications { background: var(--cream-dark); }
+.certs-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.cert-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s;
+  display: flex; align-items: flex-start; gap: 1rem;
+}
+.cert-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  border-color: var(--gold);
+}
+.cert-icon {
+  width: 36px; height: 36px; border-radius: 4px;
+  background: var(--steel); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.cert-body {}
+.cert-title {
+  font-weight: 600; font-size: 0.82rem;
+  color: var(--steel); margin-bottom: 0.2rem;
+  line-height: 1.3;
+}
+.cert-issuer { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.2rem; }
+.cert-date { font-size: 0.7rem; color: var(--text-muted); }
+
+/* EDUCATION */
+.edu-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px; padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex; gap: 2rem; align-items: center;
+  margin-top: 2rem;
+}
+.edu-badge {
+  width: 72px; height: 72px; border-radius: 6px;
+  background: var(--steel); display: flex;
+  align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 1.6rem;
+  color: var(--gold); font-weight: 700; flex-shrink: 0;
+}
+.edu-degree {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 1.05rem; color: var(--steel);
+  margin-bottom: 0.2rem;
+}
+.edu-school { font-size: 0.82rem; color: var(--gold); font-weight: 600; margin-bottom: 0.15rem; }
+.edu-details { font-size: 0.78rem; color: var(--text-muted); }
+
+/* CONTACT */
+#contact { background: var(--steel); padding: 5rem 0; }
+.contact-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.contact-left h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--white); line-height: 1.15;
+  letter-spacing: -0.02em; margin-bottom: 1.25rem;
+}
+.contact-left p { font-size: 0.88rem; color: #8a9ab0; line-height: 1.75; margin-bottom: 2rem; }
+.contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: 0.85rem; color: var(--cream);
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200,151,58,0.15);
+  border-radius: 4px; transition: all 0.2s;
+}
+.contact-link:hover {
+  background: rgba(200,151,58,0.1);
+  border-color: rgba(200,151,58,0.4);
+  color: var(--gold-light);
+}
+.contact-link-icon { font-size: 1.1rem; }
+.contact-right {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(200,151,58,0.15);
+  border-radius: 8px; padding: 2.5rem;
+}
+.contact-right h3 {
+  font-family: var(--font-display); font-size: 1.1rem;
+  color: var(--gold); margin-bottom: 1.5rem;
+}
+.availability-row {
+  display: flex; justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.82rem;
+}
+.availability-row:last-of-type { border-bottom: none; }
+.avail-key { color: #8a9ab0; }
+.avail-val { color: var(--white); font-weight: 500; }
+.avail-val.green { color: #4caf78; }
+
+/* FOOTER */
+footer {
+  background: var(--ink); padding: 1.5rem;
+  text-align: center;
+}
+footer p {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  letter-spacing: 0.1em; color: #3a4a5a;
+  text-transform: uppercase;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0; transform: translateY(24px);
+  animation: fadeUp 0.7s ease forwards;
+}
+.fade-in-1 { animation-delay: 0.1s; }
+.fade-in-2 { animation-delay: 0.25s; }
+.fade-in-3 { animation-delay: 0.4s; }
+.fade-in-4 { animation-delay: 0.55s; }
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 5rem 1.5rem 3rem; }
+  .hero-right { display: none; }
+  .competencies-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr 1fr; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .container { padding: 0 1.5rem; }
+}
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .certs-grid { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .edu-card { flex-direction: column; }
+}
+
+/* Progress bar animation for KPI */
+.progress-ring { transform: rotate(-90deg); }
+.progress-ring circle { transition: stroke-dashoffset 1.5s ease; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Risang B. Gumilar</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#competencies">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <!-- Left -->
+  <div class="hero-left">
+    <div class="hero-bg-grid"></div>
+    <p class="hero-eyebrow fade-in fade-in-1">EPC / EPCC · Project Engineer</p>
+    <h1 class="hero-name fade-in fade-in-2">Risang<br>Bagaskara<br>Gumilar</h1>
+    <p class="hero-title fade-in fade-in-2">Planning & Control Specialist</p>
+    <p class="hero-summary fade-in fade-in-3">
+      7+ years of hands-on EPC/EPCC experience across Oil & Gas, Mining, Power, and Petrochemical sectors. Full project lifecycle exposure — from tender and planning through execution, commissioning, and close-out.
+    </p>
+    <div class="hero-badges fade-in fade-in-3">
+      <span class="badge">Steel Structure</span>
+      <span class="badge">Mechanical & Piping</span>
+      <span class="badge">Primavera P6</span>
+      <span class="badge">EVM</span>
+      <span class="badge">S-Curve</span>
+      <span class="badge">Bilingual</span>
+    </div>
+    <a href="#contact" class="hero-cta fade-in fade-in-4">
+      Open to Opportunities
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+  <!-- Right — visual dashboard -->
+  <div class="hero-right">
+    <!-- Stats -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-value">7+</div>
+        <div class="stat-label">Years EPC</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">8</div>
+        <div class="stat-label">Major Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">Dep.</div>
+        <div class="stat-label">CM Highest Role</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">3.38</div>
+        <div class="stat-label">GPA / 4.00</div>
+      </div>
+    </div>
+
+    <!-- S-Curve -->
+    <div class="scurve-card">
+      <div class="scurve-label">S-Curve — Physical Progress Tracking</div>
+      <svg class="scurve-svg" viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grid lines -->
+        <line x1="0" y1="20" x2="400" y2="20" stroke="#e0d8cc" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <line x1="0" y1="40" x2="400" y2="40" stroke="#e0d8cc" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <line x1="0" y1="60" x2="400" y2="60" stroke="#e0d8cc" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <!-- Baseline plan curve (blue-teal) -->
+        <path d="M0,78 C40,76 80,70 120,58 C160,44 200,24 250,12 C300,4 340,2 400,2" stroke="#2a7f8a" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- Actual progress (gold) -->
+        <path d="M0,78 C35,77 75,72 115,62 C155,50 195,28 240,14 C270,6 300,4 320,4" stroke="#c8973a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- Data point dot -->
+        <circle cx="320" cy="4" r="4" fill="#c8973a"/>
+        <!-- Legend -->
+        <line x1="10" y1="72" x2="28" y2="72" stroke="#2a7f8a" stroke-width="2"/>
+        <text x="32" y="75.5" font-size="7" fill="#8a9ab0" font-family="monospace">Planned</text>
+        <line x1="90" y1="72" x2="108" y2="72" stroke="#c8973a" stroke-width="2"/>
+        <text x="112" y="75.5" font-size="7" fill="#8a9ab0" font-family="monospace">Actual</text>
+      </svg>
+    </div>
+
+    <!-- Gantt -->
+    <div class="gantt-card">
+      <div class="gantt-label">Current Schedule — Salak Geothermal EPCC</div>
+      <div class="gantt-rows">
+        <div class="gantt-row">
+          <div class="gantt-row-label">Engineering</div>
+          <div class="gantt-track"><div class="gantt-bar" style="left:0%;width:60%;background:var(--gold);opacity:0.85;"></div></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-row-label">Procurement</div>
+          <div class="gantt-track"><div class="gantt-bar" style="left:10%;width:55%;background:#3da8b5;opacity:0.85;"></div></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-row-label">Civil Works</div>
+          <div class="gantt-track"><div class="gantt-bar" style="left:20%;width:65%;background:#e6b86a;opacity:0.7;"></div></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-row-label">Mech/Piping</div>
+          <div class="gantt-track"><div class="gantt-bar" style="left:30%;width:50%;background:var(--gold);opacity:0.6;"></div></div>
+        </div>
+        <div class="gantt-row">
+          <div class="gantt-row-label">Commissioning</div>
+          <div class="gantt-track"><div class="gantt-bar" style="left:80%;width:18%;background:#4caf78;opacity:0.85;"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI row -->
+    <div class="kpi-row">
+      <div class="kpi-item">
+        <div class="kpi-icon">📊</div>
+        <div class="kpi-val">EVM</div>
+        <div class="kpi-name">Cost Control</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-icon">📅</div>
+        <div class="kpi-val">P6</div>
+        <div class="kpi-name">Scheduling</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-icon">🏗️</div>
+        <div class="kpi-val">EPCC</div>
+        <div class="kpi-name">Full Lifecycle</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCIES -->
+<section id="competencies">
+  <div class="container">
+    <p class="section-eyebrow">Core Competencies</p>
+    <h2 class="section-title">Built for high-stakes<br>project environments</h2>
+    <div class="competencies-grid">
+      <div class="competency-card">
+        <div class="comp-icon">📈</div>
+        <div class="comp-title">Project Planning & Control</div>
+        <div class="comp-desc">Schedule development, baseline management, S-curve analysis, physical and financial progress tracking, variance analysis, and corrective action recommendations using Primavera P6.</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">💰</div>
+        <div class="comp-title">Cost Control & EVM</div>
+        <div class="comp-desc">Earned Value Management, cost control, change management, and budget variance reporting for EPC/EPCC projects across Oil & Gas, Mining, and Petrochemical sectors.</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">🏗️</div>
+        <div class="comp-title">Field Construction Management</div>
+        <div class="comp-desc">Steel structure, mechanical & piping erection, conveyor and coal handling installation. Multi-discipline site supervision from fabrication through commissioning.</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">📋</div>
+        <div class="comp-title">Estimating & Tender</div>
+        <div class="comp-desc">Detailed cost estimation, BOQ preparation, quantity take-off, bid evaluation, and tender document management for multi-discipline EPC packages.</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">🤝</div>
+        <div class="comp-title">Stakeholder Management</div>
+        <div class="comp-desc">Cross-functional coordination with clients, engineering, procurement, and construction teams. Proven track record with Air Products, AMMAN Mineral, Lotte Chemical, and Star Energy.</div>
+      </div>
+      <div class="competency-card">
+        <div class="comp-icon">📄</div>
+        <div class="comp-title">Document Control</div>
+        <div class="comp-desc">Project documentation systems, version control, filing integrity, timely document distribution, RFI management, and contractual compliance across multi-site projects.</div>
+      </div>
+    </div>
+
+    <br><br>
+    <p class="section-eyebrow" style="color:var(--gold);">Technical Toolkit</p>
+    <div class="tools-grid" style="margin-top:1rem;">
+      <span class="tool-pill highlight">Primavera P6</span>
+      <span class="tool-pill highlight">MS Project</span>
+      <span class="tool-pill highlight">Excel (Advanced)</span>
+      <span class="tool-pill">AutoCAD</span>
+      <span class="tool-pill">EVM / EVA</span>
+      <span class="tool-pill">S-Curve Analysis</span>
+      <span class="tool-pill">WBS Development</span>
+      <span class="tool-pill">Critical Path Method</span>
+      <span class="tool-pill">BOQ / Quantity Take-Off</span>
+      <span class="tool-pill">HSE Compliance</span>
+      <span class="tool-pill">Resource Leveling</span>
+      <span class="tool-pill">Progress Measurement</span>
+      <span class="tool-pill">MS Office Suite</span>
+      <span class="tool-pill">Bilingual EN/ID</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-eyebrow">Career Timeline</p>
+    <h2 class="section-title">7+ Years of Progressive<br>EPC Leadership</h2>
+    <div class="experience-timeline">
+
+      <!-- Current -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Project Control Specialist</div>
+          <div class="exp-date">Dec 2025 – Present</div>
+        </div>
+        <div class="exp-company">PT. Timas Suplindo</div>
+        <div class="exp-location">DKI Jakarta · Client: Star Energy Geothermal Salak / Fuji Electric</div>
+        <div class="exp-card">
+          <ul class="exp-bullets">
+            <li>Manage project control for a major EPCC geothermal power plant — schedule monitoring, cost control, and progress reporting across Engineering, Procurement, and Construction.</li>
+            <li>Develop and maintain master schedule in Primavera P6; monitor critical path and flag deviations with corrective action plans.</li>
+            <li>Produce weekly and monthly reports with S-curve, physical/financial progress tracking, and variance analysis for client and management.</li>
+            <li>Coordinate across procurement, engineering, and construction teams to ensure data accuracy and timely document submission.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PC Coordinator AMMAN -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Project Control Coordinator</div>
+          <div class="exp-date">Apr 2025 – Nov 2025</div>
+        </div>
+        <div class="exp-company">PT. Swadaya Graha</div>
+        <div class="exp-location">Sumbawa Barat, NTB · E&C Replacement 54" Seawater Pipeline – AMMAN Mineral</div>
+        <div class="exp-card">
+          <ul class="exp-bullets">
+            <li>Led project control for a large-diameter seawater pipeline replacement in a remote mining site environment.</li>
+            <li>Prepared baseline schedule and maintained progress tracking against milestones; reported schedule performance to PM and client.</li>
+            <li>Managed project documentation system: version control, filing integrity, and timely distribution of technical documents.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Deputy CM -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Deputy Construction Manager</div>
+          <div class="exp-date">Apr 2024 – Mar 2025</div>
+        </div>
+        <div class="exp-company">PT. Swadaya Graha</div>
+        <div class="exp-location">Cilegon, Banten · WP3 BTX Lotte Chemical Project</div>
+        <div class="exp-card">
+          <ul class="exp-bullets">
+            <li>Promoted to Deputy CM — overseeing all Steel Structure, Mechanical & Piping construction activities on a major petrochemical facility.</li>
+            <li>Managed multi-discipline construction teams; ensured execution per engineering drawings, specifications, and quality standards.</li>
+            <li>Monitored and controlled schedule, budget, and resource allocation; reported project status to CM and client.</li>
+            <li>Ensured full HSE compliance across all subcontractors; conducted safety briefings and enforced safe work practices.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PC Coordinator Air Products -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Project Control Coordinator</div>
+          <div class="exp-date">Jan 2023 – Apr 2024</div>
+        </div>
+        <div class="exp-company">PT. Swadaya Graha</div>
+        <div class="exp-location">Sei Mangkei, North Sumatra / Sangkulirang, Kalimantan Timur · Air Products UOI & PSS Oleo</div>
+        <div class="exp-card">
+          <ul class="exp-bullets">
+            <li>Managed project control for two concurrent multi-discipline EPC projects (Steel Structure, Mechanical & Piping) for Air Products.</li>
+            <li>Prepared and maintained project schedules, S-curves, and progress measurement systems for physical and financial reporting.</li>
+            <li>Supported procurement with tender document preparation, technical queries, and bid evaluation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Estimator -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Estimator — SMP Projects</div>
+          <div class="exp-date">Jan 2022 – Dec 2022</div>
+        </div>
+        <div class="exp-company">PT. Swadaya Graha</div>
+        <div class="exp-location">Jakarta</div>
+        <div class="exp-card">
+          <ul class="exp-bullets">
+            <li>Prepared detailed cost estimates and BOQ for Steel Structure, Mechanical & Piping tender packages.</li>
+            <li>Managed full estimating process: quantity take-off, subcontractor quotations, risk contingency, and management approval.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Field Engr -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Field Construction Engineer</div>
+          <div class="exp-date">Jan 2021 – Dec 2021</div>
+        </div>
+        <div class="exp-company">PT. Dewata Tehnik</div>
+        <div class="exp-location">Palembang, South Sumatra / Bombana, South East Sulawesi</div>
+        <div class="exp-card">
+          <ul class="exp-bullets">
+            <li>Managed field execution of conveyor and mechanical coal handling installation at PT. Bukit Asam (TLS-5), Muara Enim.</li>
+            <li>Supervised mechanical unloading facility installation at Batuputih Harbour, Bombana.</li>
+            <li>Prepared construction schedules; monitored daily progress; managed RFI and technical query resolution in the field.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Fabrication Supervisor -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-role">Fabrication Supervisor → Project Control</div>
+          <div class="exp-date">Dec 2017 – Dec 2020</div>
+        </div>
+        <div class="exp-company">PT. Swadaya Graha</div>
+        <div class="exp-location">Gresik & field sites across Indonesia</div>
+        <div class="exp-card">
+          <ul class="exp-bullets">
+            <li>Started in Project Control (2017–2018): tracked project status and prepared progress reports for Pabrik Gula Asembagoes and Gudang Garam Piping projects.</li>
+            <li>Promoted to Fabrication Supervisor (2019–2020): led shop fabrication for Boiler Buckstay (PJB Tanjung Jati), Pipe Pile, Headstock, and Piperack fabrication for RDMP Balikpapan.</li>
+            <li>Managed daily workforce of 20+ fabricators; ensured quality per engineering drawings and client specifications.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-eyebrow">Notable Projects</p>
+    <h2 class="section-title">High-Impact Deliveries<br>Across Sectors</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-tag">Geothermal · EPCC</div>
+        <div class="project-name">Salak Unit 7 Geothermal Development</div>
+        <div class="project-client">Star Energy Geothermal Salak / Fuji Electric · PT. Timas Suplindo</div>
+        <div class="project-scope">Full EPCC geothermal power plant project. Responsible for master schedule development in P6, S-curve reporting, critical path monitoring, and multi-discipline coordination across Engineering, Procurement, and Construction phases.</div>
+        <div class="project-meta">
+          <span class="meta-tag">Project Control</span>
+          <span class="meta-tag">Primavera P6</span>
+          <span class="meta-tag">Steel / Mech / Piping</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Petrochemical · EPC</div>
+        <div class="project-name">WP3 BTX — Lotte Chemical Cilegon</div>
+        <div class="project-client">Lotte Chemical · PT. Swadaya Graha</div>
+        <div class="project-scope">Highest role held to date — Deputy Construction Manager overseeing all construction activities for Steel Structure, Mechanical & Piping on a major petrochemical plant. Managed multi-discipline teams, HSE compliance, schedule, and budget control.</div>
+        <div class="project-meta">
+          <span class="meta-tag">Deputy Const. Manager</span>
+          <span class="meta-tag">Petrochemical</span>
+          <span class="meta-tag">HSE</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Mining · Pipeline E&C</div>
+        <div class="project-name">54" Seawater Pipeline Replacement</div>
+        <div class="project-client">AMMAN Mineral · PT. Swadaya Graha</div>
+        <div class="project-scope">Led project control for a large-diameter seawater pipeline replacement in a remote mining environment. Managed baseline schedule, milestone tracking, documentation system, and multi-discipline coordination in a challenging logistical setting.</div>
+        <div class="project-meta">
+          <span class="meta-tag">PC Coordinator</span>
+          <span class="meta-tag">Pipeline</span>
+          <span class="meta-tag">Remote Site</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Industrial Gas · EPC</div>
+        <div class="project-name">Air Products UOI & PSS Oleo</div>
+        <div class="project-client">Air Products · PT. Swadaya Graha · North Sumatra / East Kalimantan</div>
+        <div class="project-scope">Managed project control for two concurrent multi-discipline EPC projects — simultaneously coordinating schedules, S-curves, progress measurement, and client reporting for separate sites in different provinces across Indonesia.</div>
+        <div class="project-meta">
+          <span class="meta-tag">PC Coordinator</span>
+          <span class="meta-tag">Concurrent Projects</span>
+          <span class="meta-tag">EVM</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Mining · Mechanical</div>
+        <div class="project-name">Coal Handling TLS-5 — Bukit Asam</div>
+        <div class="project-client">PT. Bukit Asam · PT. Dewata Tehnik · Muara Enim</div>
+        <div class="project-scope">Field construction management of conveyor and mechanical coal handling installation for one of Indonesia's largest state-owned coal mining companies. Managed construction schedules, resource coordination, and RFI resolution on-site.</div>
+        <div class="project-meta">
+          <span class="meta-tag">Field Const. Engr</span>
+          <span class="meta-tag">Conveyor</span>
+          <span class="meta-tag">Coal Mining</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-tag">Power · Shop Fabrication</div>
+        <div class="project-name">Boiler Buckstay & RDMP Piperack</div>
+        <div class="project-client">PJB Tanjung Jati / Pertamina RDMP Balikpapan · PT. Swadaya Graha</div>
+        <div class="project-scope">Led shop fabrication teams for Boiler Buckstay (PJB Tanjung Jati) and Piperack fabrication for RDMP Balikpapan. Managed a daily workforce of 20+ fabricators, ensuring quality compliance with engineering drawings and client specifications.</div>
+        <div class="project-meta">
+          <span class="meta-tag">Fab. Supervisor</span>
+          <span class="meta-tag">Boiler</span>
+          <span class="meta-tag">Refinery</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <p class="section-eyebrow">Credentials</p>
+    <h2 class="section-title">Certifications &<br>Professional Training</h2>
+    <div class="certs-grid">
+
+      <div class="cert-card">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-body">
+          <div class="cert-title">Project Management Foundations</div>
+          <div class="cert-issuer">LinkedIn Learning · PMI REP</div>
+          <div class="cert-date">October 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">📅</div>
+        <div class="cert-body">
+          <div class="cert-title">PM Foundations: Schedules</div>
+          <div class="cert-issuer">LinkedIn Learning · PMI REP</div>
+          <div class="cert-date">October 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">💰</div>
+        <div class="cert-body">
+          <div class="cert-title">PM Foundations: Budgets</div>
+          <div class="cert-issuer">LinkedIn Learning · PMI REP</div>
+          <div class="cert-date">October 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">🏗️</div>
+        <div class="cert-body">
+          <div class="cert-title">Construction Management Foundations</div>
+          <div class="cert-issuer">LinkedIn Learning · PMI REP</div>
+          <div class="cert-date">November 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">📊</div>
+        <div class="cert-body">
+          <div class="cert-title">Construction Management: Planning & Scheduling</div>
+          <div class="cert-issuer">LinkedIn Learning · PMI REP</div>
+          <div class="cert-date">November 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">🔷</div>
+        <div class="cert-body">
+          <div class="cert-title">Primavera P6 Essential Training</div>
+          <div class="cert-issuer">LinkedIn Learning · PMI REP</div>
+          <div class="cert-date">November 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">📁</div>
+        <div class="cert-body">
+          <div class="cert-title">Learning Microsoft Project</div>
+          <div class="cert-issuer">LinkedIn Learning · PMI REP</div>
+          <div class="cert-date">October 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">🗂️</div>
+        <div class="cert-body">
+          <div class="cert-title">MS Project: Planning for Successful PM</div>
+          <div class="cert-issuer">LinkedIn Learning · PMI REP</div>
+          <div class="cert-date">November 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">🧠</div>
+        <div class="cert-body">
+          <div class="cert-title">AI Productivity Hacks for Workday & Career</div>
+          <div class="cert-issuer">LinkedIn Learning · HRCI</div>
+          <div class="cert-date">October 2025</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">🔵</div>
+        <div class="cert-body">
+          <div class="cert-title">Basic Fundamental Primavera P6 Workshop</div>
+          <div class="cert-issuer">Bangun Energi</div>
+          <div class="cert-date">August 2023</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon">🌐</div>
+        <div class="cert-body">
+          <div class="cert-title">Business Conversation English Training</div>
+          <div class="cert-issuer">LPK Stepahead Batam</div>
+          <div class="cert-date">October 2020</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Education -->
+    <br><br>
+    <p class="section-eyebrow">Education</p>
+    <div class="edu-card">
+      <div class="edu-badge">D3</div>
+      <div>
+        <div class="edu-degree">D3 Shipbuilding Engineering</div>
+        <div class="edu-school">Politeknik Perkapalan Negeri Surabaya (PPNS)</div>
+        <div class="edu-details">GPA 3.38 / 4.00 &nbsp;·&nbsp; TOEIC 580 &nbsp;·&nbsp; Graduated 2017 &nbsp;·&nbsp; Foundation in Structural & Mechanical Systems</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <h2>Ready to deliver your next critical project</h2>
+        <p>
+          Based in South Jakarta, Indonesia. Available for EPC/EPCC project control, planning, and field construction management roles — locally and across the Indonesian archipelago.
+        </p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:risangbagaskaragum@gmail.com">
+            <span class="contact-link-icon">✉</span>
+            risangbagaskaragum@gmail.com
+          </a>
+          <a class="contact-link" href="tel:+6281230007020">
+            <span class="contact-link-icon">📞</span>
+            +62 812-3000-7020
+          </a>
+          <a class="contact-link" href="#">
+            <span class="contact-link-icon">🔗</span>
+            LinkedIn Profile
+          </a>
+          <a class="contact-link" href="#">
+            <span class="contact-link-icon">📍</span>
+            South Jakarta, Indonesia
+          </a>
+        </div>
+      </div>
+      <div class="contact-right">
+        <h3>Availability & Profile</h3>
+        <div class="availability-row">
+          <span class="avail-key">Status</span>
+          <span class="avail-val green">✓ Open to Opportunities</span>
+        </div>
+        <div class="availability-row">
+          <span class="avail-key">Preferred Role</span>
+          <span class="avail-val">Project Control / Project Engineer</span>
+        </div>
+        <div class="availability-row">
+          <span class="avail-key">Sectors</span>
+          <span class="avail-val">Oil & Gas · Mining · Power · Petrochem</span>
+        </div>
+        <div class="availability-row">
+          <span class="avail-key">Mobility</span>
+          <span class="avail-val">Domestic & Remote Site Ready</span>
+        </div>
+        <div class="availability-row">
+          <span class="avail-key">Languages</span>
+          <span class="avail-val">English & Indonesian (Bilingual)</span>
+        </div>
+        <div class="availability-row">
+          <span class="avail-key">Notice Period</span>
+          <span class="avail-val">Available for Discussion</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Risang Bagaskara Gumilar · Project Engineer & Planning Control Specialist · South Jakarta, Indonesia</p>
+</footer>
+
+<script>
+// Intersection observer for scroll animations
+const observerOptions = { threshold: 0.1 };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.competency-card, .project-card, .cert-card, .exp-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// Smooth active nav
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
+  });
+});
+</script>
+</body>
+</html>
