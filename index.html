@@ -1269,11 +1269,11 @@ footer p {
     <!-- Tab buttons -->
     <div class="work-tabs-wrapper">
     <div class="work-tabs">
-      <button class="work-tab active" onclick="switchTab('p6')" id="tab-p6">
+      <button class="work-tab active" data-tab="p6" id="tab-p6">
         <span class="work-tab-icon">📊</span>
         Primavera P6 — Air Products PSS Oleo
       </button>
-      <button class="work-tab" onclick="switchTab('msp')" id="tab-msp">
+      <button class="work-tab" data-tab="msp" id="tab-msp">
         <span class="work-tab-icon">📅</span>
         MS Project — AMMAN Mineral 54" Pipeline
       </button>
@@ -1296,7 +1296,7 @@ footer p {
           </div>
         </div>
         <div class="work-doc-actions">
-          <button class="btn-fullscreen" onclick="toggleFullscreen('iframe-p6', 'panel-p6')">⛶ Fullscreen</button>
+          <button class="btn-fullscreen" data-fullscreen="iframe-p6">⛶ Fullscreen</button>
           <a class="btn-dl" href="PSS_OLEO_Schedule_P6.pdf" download>↓ Download PDF</a>
         </div>
       </div>
@@ -1349,7 +1349,7 @@ footer p {
           </div>
         </div>
         <div class="work-doc-actions">
-          <button class="btn-fullscreen" onclick="toggleFullscreen('iframe-msp', 'panel-msp')">⛶ Fullscreen</button>
+          <button class="btn-fullscreen" data-fullscreen="iframe-msp">⛶ Fullscreen</button>
           <a class="btn-dl" href="AMMAN_54in_Master_Schedule.pdf" download>↓ Download PDF</a>
         </div>
       </div>
@@ -1452,6 +1452,75 @@ footer p {
   <p>© 2026 Risang Bagaskara Gumilar · Project Engineer & Planning Control Specialist · South Jakarta, Indonesia</p>
 </footer>
 
+<!-- TAB SCRIPT — standalone, isolated from Cloudflare -->
+<script>
+(function() {
+  function initTabs() {
+    var tabButtons = document.querySelectorAll('[data-tab]');
+    if (!tabButtons.length) return;
+
+    tabButtons.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var tabId = btn.getAttribute('data-tab');
+
+        // Reset all tabs
+        document.querySelectorAll('[data-tab]').forEach(function(b) {
+          b.classList.remove('active');
+        });
+        // Reset all panels
+        document.querySelectorAll('.work-panel').forEach(function(p) {
+          p.classList.remove('active');
+          p.style.display = 'none';
+        });
+
+        // Activate clicked tab
+        btn.classList.add('active');
+
+        // Activate matching panel
+        var panel = document.getElementById('panel-' + tabId);
+        if (panel) {
+          panel.classList.add('active');
+          panel.style.display = 'block';
+          panel.style.visibility = 'visible';
+        }
+      });
+    });
+
+    // Fullscreen buttons
+    document.querySelectorAll('[data-fullscreen]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var iframeId = btn.getAttribute('data-fullscreen');
+        var iframe = document.getElementById(iframeId);
+        if (!iframe) return;
+        if (!document.fullscreenElement) {
+          if (iframe.requestFullscreen) iframe.requestFullscreen();
+          else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
+        } else {
+          if (document.exitFullscreen) document.exitFullscreen();
+        }
+      });
+    });
+
+    // Ensure initial state is correct
+    document.querySelectorAll('.work-panel').forEach(function(p) {
+      if (!p.classList.contains('active')) {
+        p.style.display = 'none';
+      } else {
+        p.style.display = 'block';
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTabs);
+  } else {
+    initTabs();
+  }
+})();
+</script>
+
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Intersection observer for scroll animations
 const observerOptions = { threshold: 0.1 };
@@ -1470,38 +1539,6 @@ document.querySelectorAll('.competency-card, .project-card, .cert-card, .exp-ite
   el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
   observer.observe(el);
 });
-
-// Tab switching for Work Examples — bulletproof version
-function switchTab(tabId) {
-  // Remove active from all tabs and panels
-  var tabs = document.querySelectorAll('.work-tab');
-  var panels = document.querySelectorAll('.work-panel');
-  tabs.forEach(function(t) { t.classList.remove('active'); });
-  panels.forEach(function(p) {
-    p.classList.remove('active');
-    p.style.display = 'none';
-  });
-  // Activate selected
-  var activeTab = document.getElementById('tab-' + tabId);
-  var activePanel = document.getElementById('panel-' + tabId);
-  if (activeTab) activeTab.classList.add('active');
-  if (activePanel) {
-    activePanel.classList.add('active');
-    activePanel.style.display = 'block';
-  }
-}
-
-// Fullscreen PDF toggle
-function toggleFullscreen(iframeId, panelId) {
-  const wrap = document.getElementById('wrap-' + iframeId.replace('iframe-', ''));
-  if (!document.fullscreenElement) {
-    const iframe = document.getElementById(iframeId);
-    if (iframe.requestFullscreen) iframe.requestFullscreen();
-    else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
-  } else {
-    if (document.exitFullscreen) document.exitFullscreen();
-  }
-}
 
 // Smooth active nav
 const sections = document.querySelectorAll('section[id]');
