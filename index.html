@@ -595,40 +595,16 @@ footer p {
 .progress-ring circle { transition: stroke-dashoffset 1.5s ease; }
 
 /* WORK EXAMPLES */
-#work-examples { background: var(--cream); position: relative; z-index: 1; }
+#work-examples { background: var(--cream); position: relative; z-index: 1; isolation: isolate; }
+#work-examples-2 { background: var(--cream-dark); position: relative; z-index: 1; isolation: isolate; }
+.work-doc-number {
+  font-family: var(--font-mono); font-size: 0.6rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 0.35rem;
+}
 
 /* Global: all pseudo elements are decorative, never intercept clicks */
 *::before, *::after { pointer-events: none; }
-.work-tabs-wrapper { position: relative; z-index: 10; margin-bottom: 2rem; }
-.work-tabs {
-  display: flex; gap: 0;
-  border-bottom: 2px solid var(--border);
-  position: relative; z-index: 10;
-  background: var(--cream);
-}
-.work-tab {
-  font-family: var(--font-mono); font-size: 0.68rem;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 1rem 1.8rem; cursor: pointer;
-  border: none; border-bottom: 3px solid transparent;
-  background: transparent; color: var(--text-muted);
-  margin-bottom: -2px;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-  display: flex; align-items: center; gap: 0.6rem;
-  position: relative; z-index: 20;
-  pointer-events: all !important;
-  -webkit-user-select: none; user-select: none;
-}
-.work-tab:hover { color: var(--steel); background: rgba(200,151,58,0.06); }
-.work-tab.active { color: var(--steel); font-weight: 600; border-bottom-color: var(--gold); }
-.work-tab-icon {
-  width: 22px; height: 22px; border-radius: 3px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.8rem; flex-shrink: 0;
-}
-.work-tab.active .work-tab-icon { background: var(--steel); }
-.work-panel { display: none; position: relative; z-index: 1; }
-.work-panel.active { display: block; }
 
 .work-doc-header {
   display: flex; align-items: flex-start; justify-content: space-between;
@@ -1269,129 +1245,116 @@ footer p {
   </div>
 </section>
 
-<!-- WORK EXAMPLES -->
+<!-- WORK EXAMPLES — DOC 1 -->
 <section id="work-examples">
   <div class="container">
     <p class="section-eyebrow">Work Examples</p>
     <h2 class="section-title">Real Schedules,<br>Real Projects</h2>
 
-    <!-- Tab buttons -->
-    <div class="work-tabs-wrapper">
-    <div class="work-tabs">
-      <button class="work-tab active" data-tab="p6" id="tab-p6">
-        <span class="work-tab-icon">📊</span>
-        Primavera P6 — Air Products PSS Oleo
-      </button>
-      <button class="work-tab" data-tab="msp" id="tab-msp">
-        <span class="work-tab-icon">📅</span>
-        MS Project — AMMAN Mineral 54" Pipeline
-      </button>
+    <!-- DOC 1: Primavera P6 -->
+    <div class="work-doc-header">
+      <div class="work-doc-meta">
+        <div class="work-doc-sub">01 · Primavera P6 · Project Schedule · Rev. 0F</div>
+        <div class="work-doc-title">Mechanical &amp; Piping Construction — Air Products PSS Oleo Indonesia (2×PHG830)</div>
+        <div class="work-doc-tags">
+          <span class="work-doc-tag">Oracle Primavera P6</span>
+          <span class="work-doc-tag">Sangkulirang, East Kalimantan</span>
+          <span class="work-doc-tag">Air Products</span>
+          <span class="work-doc-tag">PT. Swadaya Graha</span>
+          <span class="work-doc-tag">Mechanical &amp; Piping</span>
+        </div>
+      </div>
+      <div class="work-doc-actions">
+        <a class="btn-dl" href="PSS_OLEO_Schedule_P6.pdf" download>↓ Download PDF</a>
+      </div>
     </div>
+    <div class="pdf-viewer-wrap">
+      <iframe src="PSS_OLEO_Schedule_P6.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" title="PSS Oleo Primavera P6 Schedule"></iframe>
     </div>
-
-    <!-- PANEL 1: Primavera P6 -->
-    <div class="work-panel active" id="panel-p6">
-      <div class="work-doc-header">
-        <div class="work-doc-meta">
-          <div class="work-doc-sub">Primavera P6 · Project Schedule · Rev. 0F</div>
-          <div class="work-doc-title">Mechanical &amp; Piping Construction — Air Products PSS Oleo Indonesia (2×PHG830)</div>
-          <div class="work-doc-tags">
-            <span class="work-doc-tag">Oracle Primavera P6</span>
-            <span class="work-doc-tag">Sangkulirang, East Kalimantan</span>
-            <span class="work-doc-tag">Air Products</span>
-            <span class="work-doc-tag">PT. Swadaya Graha</span>
-            <span class="work-doc-tag">Mechanical &amp; Piping</span>
-          </div>
-        </div>
-        <div class="work-doc-actions">
-          <button class="btn-fullscreen" data-fullscreen="iframe-p6">⛶ Fullscreen</button>
-          <a class="btn-dl" href="PSS_OLEO_Schedule_P6.pdf" download>↓ Download PDF</a>
-        </div>
+    <div class="work-context-strip">
+      <div class="work-context-item">
+        <div class="work-ctx-label">Project</div>
+        <div class="work-ctx-val">PSS Oleo Indonesia 2×PHG830</div>
       </div>
-      <div class="pdf-viewer-wrap" id="wrap-p6">
-        <iframe id="iframe-p6" src="PSS_OLEO_Schedule_P6.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" title="PSS Oleo Primavera P6 Schedule"></iframe>
+      <div class="work-context-item">
+        <div class="work-ctx-label">Tool</div>
+        <div class="work-ctx-val">Oracle Primavera P6</div>
       </div>
-      <div class="work-context-strip">
-        <div class="work-context-item">
-          <div class="work-ctx-label">Project</div>
-          <div class="work-ctx-val">PSS Oleo Indonesia 2×PHG830</div>
-        </div>
-        <div class="work-context-item">
-          <div class="work-ctx-label">Tool</div>
-          <div class="work-ctx-val">Oracle Primavera P6</div>
-        </div>
-        <div class="work-context-item">
-          <div class="work-ctx-label">Duration</div>
-          <div class="work-ctx-val">Sep 2023 – Feb 2024</div>
-        </div>
-        <div class="work-context-item">
-          <div class="work-ctx-label">Role</div>
-          <div class="work-ctx-val">PC Coordinator</div>
-        </div>
+      <div class="work-context-item">
+        <div class="work-ctx-label">Duration</div>
+        <div class="work-ctx-val">Sep 2023 – Feb 2024</div>
       </div>
-      <div class="work-desc-block">
-        <div class="work-desc-heading">About This Schedule</div>
-        <ul class="work-desc-bullets">
-          <li>3-page Primavera P6 Gantt covering full mechanical &amp; piping construction for dual Prism Hydrogen Generator (PHG830-1 &amp; -2) units at Sangkulirang, East Kalimantan for Air Products PSS Oleo Indonesia project.</li>
-          <li>Schedule hierarchy structured by WBS: Off-Site Fabrication (Workshop Gresik) → Mobilization to Site → Construction on Site → Precommissioning, with over 90 activities and logical dependencies.</li>
-          <li>Critical path (Total Float = 0) tracked through key milestones: Mobilization by Contractor, Overall Mechanical Completion (29 Feb 2024), Pneumatic Test, and Hydrotest sign-off.</li>
-          <li>Four schedule data types displayed: Actual Level of Effort, Actual Work, Remaining Work, Critical Remaining Work — as issued at baseline date 25 Dec 2023.</li>
-          <li>Prepared and maintained by Risang Bagaskara Gumilar as Project Control Coordinator on behalf of PT. Swadaya Graha (Client: Air Products).</li>
-        </ul>
+      <div class="work-context-item">
+        <div class="work-ctx-label">Role</div>
+        <div class="work-ctx-val">PC Coordinator</div>
       </div>
+    </div>
+    <div class="work-desc-block">
+      <div class="work-desc-heading">About This Schedule</div>
+      <ul class="work-desc-bullets">
+        <li>3-page Primavera P6 Gantt covering full mechanical &amp; piping construction for dual Prism Hydrogen Generator (PHG830-1 &amp; -2) units at Sangkulirang, East Kalimantan for Air Products PSS Oleo Indonesia project.</li>
+        <li>Schedule hierarchy structured by WBS: Off-Site Fabrication (Workshop Gresik) → Mobilization to Site → Construction on Site → Precommissioning, with over 90 activities and logical dependencies.</li>
+        <li>Critical path (Total Float = 0) tracked through key milestones: Mobilization by Contractor, Overall Mechanical Completion (29 Feb 2024), Pneumatic Test, and Hydrotest sign-off.</li>
+        <li>Four schedule data types displayed: Actual Level of Effort, Actual Work, Remaining Work, Critical Remaining Work — as issued at baseline date 25 Dec 2023.</li>
+        <li>Prepared and maintained by Risang Bagaskara Gumilar as Project Control Coordinator on behalf of PT. Swadaya Graha (Client: Air Products).</li>
+      </ul>
     </div>
 
-    <!-- PANEL 2: MS Project -->
-    <div class="work-panel" id="panel-msp" style="display:none;">
-      <div class="work-doc-header">
-        <div class="work-doc-meta">
-          <div class="work-doc-sub">Microsoft Project · Master Schedule · Rev. 02 · Week 35</div>
-          <div class="work-doc-title">Engineering &amp; Construction — Replace 54" Seawater Pipeline at Concentrator Area (SWIS)</div>
-          <div class="work-doc-tags">
-            <span class="work-doc-tag">Microsoft Project</span>
-            <span class="work-doc-tag">Sumbawa Barat, NTB</span>
-            <span class="work-doc-tag">AMMAN Mineral</span>
-            <span class="work-doc-tag">PT. Swadaya Graha</span>
-            <span class="work-doc-tag">Pipeline E&amp;C</span>
-            <span class="work-doc-tag">Mining</span>
-          </div>
-        </div>
-        <div class="work-doc-actions">
-          <button class="btn-fullscreen" data-fullscreen="iframe-msp">⛶ Fullscreen</button>
-          <a class="btn-dl" href="AMMAN_54in_Master_Schedule.pdf" download>↓ Download PDF</a>
-        </div>
-      </div>
-      <div class="pdf-viewer-wrap" id="wrap-msp">
-        <iframe id="iframe-msp" src="AMMAN_54in_Master_Schedule.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" title="AMMAN 54in Pipeline Master Schedule"></iframe>
-      </div>
-      <div class="work-context-strip">
-        <div class="work-context-item">
-          <div class="work-ctx-label">Project</div>
-          <div class="work-ctx-val">54" Seawater Line Replacement</div>
-        </div>
-        <div class="work-context-item">
-          <div class="work-ctx-label">Tool</div>
-          <div class="work-ctx-val">Microsoft Project</div>
-        </div>
-        <div class="work-context-item">
-          <div class="work-ctx-label">Duration</div>
-          <div class="work-ctx-val">Jan – Aug 2025 (230 days)</div>
-        </div>
-        <div class="work-context-item">
-          <div class="work-ctx-label">Role</div>
-          <div class="work-ctx-val">PC Coordinator</div>
+  </div>
+</section>
+
+<!-- WORK EXAMPLES — DOC 2 -->
+<section id="work-examples-2">
+  <div class="container">
+
+    <!-- DOC 2: MS Project -->
+    <div class="work-doc-header">
+      <div class="work-doc-meta">
+        <div class="work-doc-sub">02 · Microsoft Project · Master Schedule · Rev. 02 · Week 35</div>
+        <div class="work-doc-title">Engineering &amp; Construction — Replace 54" Seawater Pipeline at Concentrator Area (SWIS)</div>
+        <div class="work-doc-tags">
+          <span class="work-doc-tag">Microsoft Project</span>
+          <span class="work-doc-tag">Sumbawa Barat, NTB</span>
+          <span class="work-doc-tag">AMMAN Mineral</span>
+          <span class="work-doc-tag">PT. Swadaya Graha</span>
+          <span class="work-doc-tag">Pipeline E&amp;C</span>
+          <span class="work-doc-tag">Mining</span>
         </div>
       </div>
-      <div class="work-desc-block">
-        <div class="work-desc-heading">About This Schedule</div>
-        <ul class="work-desc-bullets">
-          <li>5-page Microsoft Project master schedule for Engineering &amp; Construction to replace the 54" seawater pipeline at AMMAN Mineral's Concentrator Area, Sumbawa Barat — issued as Rev. 02, Week Period 35 (25–31 Aug 2025).</li>
-          <li>230-day project spanning Jan–Aug 2025. Schedule covers full scope: Preliminary works, Design Engineering, Civil Works (pedestals, platforms), Steel Structure, Pipe Bend &amp; Straight Segments, NDE, and Demobilization.</li>
-          <li>Five pipe straight segments and five pipe bend zones tracked individually — each with Survey/Measuring, Stringing, Fit-up, Welding &amp; Finishing, and Tie-In sub-activities. Non-Destructive Examination (NDE) tracked per segment.</li>
-          <li>Baseline vs. Actual Finish dates tracked across all 173 tasks — project reported at 100% completion by Week 35, with Actual Finish of 31 Aug 2025 vs Initial Schedule of 31 May 2025.</li>
-          <li>Prepared and maintained by Risang Bagaskara Gumilar as Project Control Coordinator on behalf of PT. Swadaya Graha (Client: AMMAN Mineral Nusa Tenggara).</li>
-        </ul>
+      <div class="work-doc-actions">
+        <a class="btn-dl" href="AMMAN_54in_Master_Schedule.pdf" download>↓ Download PDF</a>
       </div>
+    </div>
+    <div class="pdf-viewer-wrap">
+      <iframe src="AMMAN_54in_Master_Schedule.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH" title="AMMAN 54in Pipeline Master Schedule"></iframe>
+    </div>
+    <div class="work-context-strip">
+      <div class="work-context-item">
+        <div class="work-ctx-label">Project</div>
+        <div class="work-ctx-val">54" Seawater Line Replacement</div>
+      </div>
+      <div class="work-context-item">
+        <div class="work-ctx-label">Tool</div>
+        <div class="work-ctx-val">Microsoft Project</div>
+      </div>
+      <div class="work-context-item">
+        <div class="work-ctx-label">Duration</div>
+        <div class="work-ctx-val">Jan – Aug 2025 (230 days)</div>
+      </div>
+      <div class="work-context-item">
+        <div class="work-ctx-label">Role</div>
+        <div class="work-ctx-val">PC Coordinator</div>
+      </div>
+    </div>
+    <div class="work-desc-block">
+      <div class="work-desc-heading">About This Schedule</div>
+      <ul class="work-desc-bullets">
+        <li>5-page Microsoft Project master schedule for Engineering &amp; Construction to replace the 54" seawater pipeline at AMMAN Mineral's Concentrator Area, Sumbawa Barat — issued as Rev. 02, Week Period 35 (25–31 Aug 2025).</li>
+        <li>230-day project spanning Jan–Aug 2025. Schedule covers full scope: Preliminary works, Design Engineering, Civil Works (pedestals, platforms), Steel Structure, Pipe Bend &amp; Straight Segments, NDE, and Demobilization.</li>
+        <li>Five pipe straight segments and five pipe bend zones tracked individually — each with Survey/Measuring, Stringing, Fit-up, Welding &amp; Finishing, and Tie-In sub-activities. Non-Destructive Examination (NDE) tracked per segment.</li>
+        <li>Baseline vs. Actual Finish dates tracked across all 173 tasks — project reported at 100% completion by Week 35, with Actual Finish of 31 Aug 2025 vs Initial Schedule of 31 May 2025.</li>
+        <li>Prepared and maintained by Risang Bagaskara Gumilar as Project Control Coordinator on behalf of PT. Swadaya Graha (Client: AMMAN Mineral Nusa Tenggara).</li>
+      </ul>
     </div>
 
   </div>
@@ -1459,75 +1422,6 @@ footer p {
 <footer>
   <p>© 2026 Risang Bagaskara Gumilar · Project Engineer & Planning Control Specialist · South Jakarta, Indonesia</p>
 </footer>
-
-<!-- TAB SCRIPT — standalone, isolated from Cloudflare -->
-<script>
-(function() {
-  function initTabs() {
-    var tabButtons = document.querySelectorAll('[data-tab]');
-    if (!tabButtons.length) return;
-
-    tabButtons.forEach(function(btn) {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        var tabId = btn.getAttribute('data-tab');
-
-        // Reset all tabs
-        document.querySelectorAll('[data-tab]').forEach(function(b) {
-          b.classList.remove('active');
-        });
-        // Reset all panels
-        document.querySelectorAll('.work-panel').forEach(function(p) {
-          p.classList.remove('active');
-          p.style.display = 'none';
-        });
-
-        // Activate clicked tab
-        btn.classList.add('active');
-
-        // Activate matching panel
-        var panel = document.getElementById('panel-' + tabId);
-        if (panel) {
-          panel.classList.add('active');
-          panel.style.display = 'block';
-          panel.style.visibility = 'visible';
-        }
-      });
-    });
-
-    // Fullscreen buttons
-    document.querySelectorAll('[data-fullscreen]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var iframeId = btn.getAttribute('data-fullscreen');
-        var iframe = document.getElementById(iframeId);
-        if (!iframe) return;
-        if (!document.fullscreenElement) {
-          if (iframe.requestFullscreen) iframe.requestFullscreen();
-          else if (iframe.webkitRequestFullscreen) iframe.webkitRequestFullscreen();
-        } else {
-          if (document.exitFullscreen) document.exitFullscreen();
-        }
-      });
-    });
-
-    // Ensure initial state is correct
-    document.querySelectorAll('.work-panel').forEach(function(p) {
-      if (!p.classList.contains('active')) {
-        p.style.display = 'none';
-      } else {
-        p.style.display = 'block';
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTabs);
-  } else {
-    initTabs();
-  }
-})();
-</script>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Intersection observer for scroll animations
