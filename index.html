@@ -71,12 +71,17 @@ nav {
   display: grid; grid-template-columns: 1fr 1fr;
   position: relative; overflow: hidden;
   padding-top: 5rem;
+  contain: layout;
 }
 .hero-left {
   background: var(--steel);
   padding: 6rem 4rem 4rem;
   display: flex; flex-direction: column; justify-content: center;
   position: relative; overflow: hidden;
+}
+.hero-left::before, .hero-left::after,
+.hero-right::before, .hero-right::after {
+  pointer-events: none;
 }
 .hero-bg-grid {
   position: absolute; inset: 0; opacity: 0.06;
@@ -261,7 +266,7 @@ h2.section-title {
 }
 
 /* COMPETENCIES */
-#competencies { background: var(--steel); }
+#competencies { background: var(--steel); isolation: isolate; overflow: hidden; }
 #competencies .section-eyebrow { color: var(--gold); }
 #competencies h2.section-title { color: var(--white); }
 .competencies-grid {
@@ -324,7 +329,7 @@ h2.section-title {
 }
 
 /* EXPERIENCE */
-#experience { background: var(--cream); }
+#experience { background: var(--cream); isolation: isolate; overflow: hidden; }
 .experience-timeline { position: relative; }
 .experience-timeline::before {
   content: ''; position: absolute;
@@ -379,7 +384,7 @@ h2.section-title {
 }
 
 /* PROJECTS */
-#projects { background: var(--steel); }
+#projects { background: var(--steel); isolation: isolate; overflow: hidden; }
 #projects .section-eyebrow { color: var(--gold); }
 #projects h2.section-title { color: var(--white); }
 .projects-grid {
@@ -435,7 +440,7 @@ h2.section-title {
 }
 
 /* CERTS */
-#certifications { background: var(--cream-dark); overflow: hidden; position: relative; z-index: 1; }
+#certifications { background: var(--cream-dark); overflow: hidden; position: relative; z-index: 1; isolation: isolate; }
 .certs-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -591,6 +596,9 @@ footer p {
 
 /* WORK EXAMPLES */
 #work-examples { background: var(--cream); position: relative; z-index: 1; }
+
+/* Global: all pseudo elements are decorative, never intercept clicks */
+*::before, *::after { pointer-events: none; }
 .work-tabs-wrapper { position: relative; z-index: 10; margin-bottom: 2rem; }
 .work-tabs {
   display: flex; gap: 0;
@@ -607,8 +615,9 @@ footer p {
   margin-bottom: -2px;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
   display: flex; align-items: center; gap: 0.6rem;
-  position: relative; z-index: 10;
-  pointer-events: all;
+  position: relative; z-index: 20;
+  pointer-events: all !important;
+  -webkit-user-select: none; user-select: none;
 }
 .work-tab:hover { color: var(--steel); background: rgba(200,151,58,0.06); }
 .work-tab.active { color: var(--steel); font-weight: 600; border-bottom-color: var(--gold); }
@@ -1291,7 +1300,6 @@ footer p {
             <span class="work-doc-tag">Sangkulirang, East Kalimantan</span>
             <span class="work-doc-tag">Air Products</span>
             <span class="work-doc-tag">PT. Swadaya Graha</span>
-            <span class="work-doc-tag">EPC</span>
             <span class="work-doc-tag">Mechanical &amp; Piping</span>
           </div>
         </div>
