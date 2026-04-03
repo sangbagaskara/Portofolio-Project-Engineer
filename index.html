@@ -435,7 +435,7 @@ h2.section-title {
 }
 
 /* CERTS */
-#certifications { background: var(--cream-dark); }
+#certifications { background: var(--cream-dark); overflow: hidden; position: relative; z-index: 1; }
 .certs-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -590,34 +590,35 @@ footer p {
 .progress-ring circle { transition: stroke-dashoffset 1.5s ease; }
 
 /* WORK EXAMPLES */
-#work-examples { background: var(--cream); }
+#work-examples { background: var(--cream); position: relative; z-index: 1; }
+.work-tabs-wrapper { position: relative; z-index: 10; margin-bottom: 2rem; }
 .work-tabs {
-  display: flex; gap: 0; margin-bottom: 2.5rem;
-  border-bottom: 1px solid var(--border);
+  display: flex; gap: 0;
+  border-bottom: 2px solid var(--border);
+  position: relative; z-index: 10;
+  background: var(--cream);
 }
 .work-tab {
   font-family: var(--font-mono); font-size: 0.68rem;
   letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 0.8rem 1.6rem; cursor: pointer;
-  border: none; background: transparent;
-  color: var(--text-muted);
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition: all 0.2s;
-  display: flex; align-items: center; gap: 0.5rem;
+  padding: 1rem 1.8rem; cursor: pointer;
+  border: none; border-bottom: 3px solid transparent;
+  background: transparent; color: var(--text-muted);
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  display: flex; align-items: center; gap: 0.6rem;
+  position: relative; z-index: 10;
+  pointer-events: all;
 }
-.work-tab:hover { color: var(--gold); }
-.work-tab.active {
-  color: var(--steel); font-weight: 600;
-  border-bottom-color: var(--gold);
-}
+.work-tab:hover { color: var(--steel); background: rgba(200,151,58,0.06); }
+.work-tab.active { color: var(--steel); font-weight: 600; border-bottom-color: var(--gold); }
 .work-tab-icon {
-  width: 20px; height: 20px; border-radius: 3px;
+  width: 22px; height: 22px; border-radius: 3px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.8rem; flex-shrink: 0;
 }
 .work-tab.active .work-tab-icon { background: var(--steel); }
-.work-panel { display: none; }
+.work-panel { display: none; position: relative; z-index: 1; }
 .work-panel.active { display: block; }
 
 .work-doc-header {
@@ -1266,6 +1267,7 @@ footer p {
     <h2 class="section-title">Real Schedules,<br>Real Projects</h2>
 
     <!-- Tab buttons -->
+    <div class="work-tabs-wrapper">
     <div class="work-tabs">
       <button class="work-tab active" onclick="switchTab('p6')" id="tab-p6">
         <span class="work-tab-icon">📊</span>
@@ -1275,6 +1277,7 @@ footer p {
         <span class="work-tab-icon">📅</span>
         MS Project — AMMAN Mineral 54" Pipeline
       </button>
+    </div>
     </div>
 
     <!-- PANEL 1: Primavera P6 -->
@@ -1331,7 +1334,7 @@ footer p {
     </div>
 
     <!-- PANEL 2: MS Project -->
-    <div class="work-panel" id="panel-msp">
+    <div class="work-panel" id="panel-msp" style="display:none;">
       <div class="work-doc-header">
         <div class="work-doc-meta">
           <div class="work-doc-sub">Microsoft Project · Master Schedule · Rev. 02 · Week 35</div>
@@ -1468,12 +1471,24 @@ document.querySelectorAll('.competency-card, .project-card, .cert-card, .exp-ite
   observer.observe(el);
 });
 
-// Tab switching for Work Examples
+// Tab switching for Work Examples — bulletproof version
 function switchTab(tabId) {
-  document.querySelectorAll('.work-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + tabId).classList.add('active');
-  document.getElementById('panel-' + tabId).classList.add('active');
+  // Remove active from all tabs and panels
+  var tabs = document.querySelectorAll('.work-tab');
+  var panels = document.querySelectorAll('.work-panel');
+  tabs.forEach(function(t) { t.classList.remove('active'); });
+  panels.forEach(function(p) {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
+  // Activate selected
+  var activeTab = document.getElementById('tab-' + tabId);
+  var activePanel = document.getElementById('panel-' + tabId);
+  if (activeTab) activeTab.classList.add('active');
+  if (activePanel) {
+    activePanel.classList.add('active');
+    activePanel.style.display = 'block';
+  }
 }
 
 // Fullscreen PDF toggle
